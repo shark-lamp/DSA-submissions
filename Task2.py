@@ -39,8 +39,18 @@ for record in calls:
         long_duration = call_duration[record[0]]
         number = record[0]
 
-print(f"{number} spent the longest time, {long_duration} seconds, on the phone during September 2016.")
+for record in calls:
+    duration = int(record[3])  # Assuming the call duration is in the fourth column
+    if record[1] not in call_duration:
+        call_duration[record[1]] = duration
+    else:
+        call_duration[record[1]] += duration
 
+    if call_duration[record[1]] > long_duration:
+        long_duration = call_duration[record[1]]
+        number = record[1]
+
+print(f"{number} spent the longest time, {long_duration} seconds, on the phone during September 2016.")
 
 
 
